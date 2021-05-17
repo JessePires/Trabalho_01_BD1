@@ -7,6 +7,27 @@
 create database restaurantes;
 use restaurantes;
 
+drop table if exists pedido_composto_de_produto;
+drop table if exists pedido;
+drop table if exists pagamento;
+drop table if exists comanda;
+drop table if exists controle_caixa;
+drop table if exists mesa;
+drop table if exists feito_por;
+drop table if exists composto_de;
+drop table if exists ingrediente;
+drop table if exists produto_feito_na_hora;
+drop table if exists informacao_nutricional;
+drop table if exists produto;
+drop table if exists cozinheiro;
+drop table if exists garcom;
+drop table if exists gerente;
+drop table if exists telefone;
+drop table if exists funcionario;
+drop table if exists estabelecimento;
+drop table if exists proprietario;
+
+
 create table proprietario (
 	cpf char(11) not null,
     nome varchar (100),
@@ -51,12 +72,8 @@ create table telefone (
 
 create table gerente (
 	cpf	char(11) not null,
-    id_estabelecimento char(14) not null,
     desde date,
     primary key (cpf),
-        
-	foreign key (id_estabelecimento)
-		references estabelecimento(cnpj),
         
 	foreign key (cpf)
 		references funcionario(cpf)
@@ -90,15 +107,15 @@ create table produto (
 );
 
 create table informacao_nutricional (
-	id integer not null,
-    valor_energetico float(3,2),
-    carboidratos float(3,2),
-    proteinas float(3,2),
-    gorduras_totais float(3,2),
-    gorduras_saturadas float(3,2),
-    gorduras_trans float(3,2),
-    fibra_alimentar float(3,2),
-    sodio float(3,2),
+	id integer not null auto_increment,
+    valor_energetico float(5,2),
+    carboidratos float(5,2),
+    proteinas float(5,2),
+    gorduras_totais float(5,2),
+    gorduras_saturadas float(5,2),
+    gorduras_trans float(5,2),
+    fibra_alimentar float(5,2),
+    sodio float(5,2),
     id_produto varchar(100),
     primary key (id),
     
@@ -159,7 +176,7 @@ create table mesa (
 );
 
 create table controle_caixa (
-	id integer not null,
+	id integer not null auto_increment,
     saldo float(5,2),
     data_abertura date,
     hora_abertura time,
@@ -179,7 +196,7 @@ create table comanda (
 );
 
 create table pagamento (
-	id integer not null,
+	id integer not null auto_increment,
 	forma_pagamento varchar(50),
     id_comanda integer,
     id_controle_caixa integer,
