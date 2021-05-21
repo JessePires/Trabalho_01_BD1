@@ -38,7 +38,7 @@ create table proprietario (
 create table estabelecimento (
 	cnpj char(14) not null,
     nome varchar(100),
-    ano_criacao date,
+    data_criacao date,
     id_proprietario char(11) not null,
     primary key (cnpj),
     
